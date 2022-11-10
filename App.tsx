@@ -1,11 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import { useEffect, useState } from 'react';
-import getApiContent from '@src/api';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar } from 'expo-status-bar';
 import { Text } from 'react-native';
 
+import getApiContent from '@src/api';
 import { useValorantStore } from '@src/store';
 
+import HomeScreen from '@src/pages/HomeScreen';
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   const data = useValorantStore((state: any) => state.data)
@@ -16,17 +22,12 @@ export default function App() {
   }, [])
 
   return (
-    <SafeAreaView style={styles.container}>
-      {data &&
-        (
-          <Text>Data is loaded</Text>
-        )
-      }
-      {!data && (
-        <Text>Data is not loaded</Text>
-      )}
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+      // <StatusBar style="auto" />
   );
 }
 
