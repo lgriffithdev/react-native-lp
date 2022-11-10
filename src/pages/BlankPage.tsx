@@ -1,23 +1,42 @@
 import { ReactNode } from "react"
-import { SafeAreaView, StyleSheet } from "react-native"
+import { 
+    SafeAreaView, 
+    StyleSheet, 
+    ImageBackground 
+} from "react-native"
+import { StatusBar } from 'expo-status-bar'
 
 type PropsType = {
     children?: ReactNode
+    backgroundImage?: {
+        uri: string,
+    }
 }
 
-const BlankPage: React.FC<PropsType> = ({ children }) => {
+const BlankPage: React.FC<PropsType> = ({ children, backgroundImage }) => {
     return(
-        <SafeAreaView style={styles.container}>
-            {children}
-        </SafeAreaView>
+        <>
+            <SafeAreaView style={styles.container}>
+                <ImageBackground 
+                    source={backgroundImage}
+                    resizeMode="cover"
+                    style={styles.image}
+                >
+                    {children}
+                </ImageBackground>
+            </SafeAreaView>
+            <StatusBar style="auto" />
+        </>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start'
+    },
+    image: {
+        flex: 1,
+        justifyContent: 'center'
     }
 })
 

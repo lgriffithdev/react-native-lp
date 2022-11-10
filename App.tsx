@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StatusBar } from 'expo-status-bar';
 import { Text } from 'react-native';
 
 import getApiContent from '@src/api';
@@ -27,7 +26,6 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
-      // <StatusBar style="auto" />
   );
 }
 
