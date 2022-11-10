@@ -8,9 +8,7 @@ import { StatusBar } from 'expo-status-bar'
 
 type PropsType = {
     children?: ReactNode
-    backgroundImage?: {
-        uri: string,
-    }
+    backgroundImage?: any
 }
 
 const BlankPage: React.FC<PropsType> = ({ children, backgroundImage }) => {
@@ -21,6 +19,7 @@ const BlankPage: React.FC<PropsType> = ({ children, backgroundImage }) => {
                     source={backgroundImage}
                     resizeMode="cover"
                     style={styles.image}
+                    blurRadius={2}
                 >
                     {children}
                 </ImageBackground>

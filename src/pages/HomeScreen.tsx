@@ -9,9 +9,7 @@ import BlankPage from '@src/pages/BlankPage'
 
 const HomeScreen: React.FC = () => {    
     return(
-        <BlankPage backgroundImage={{ 
-            uri: 'https://img-4.linternaute.com/uhzhgirb0Ffs2JYvUb7hw_7li8A=/1500x/smart/7798d89d3be549c4839370740df7340d/ccmcms-linternaute/16146575.jpg'
-        }}>
+        <BlankPage backgroundImage={require('@assets/images/homepage/homepage_background.jpeg')}>
             <View style={styles.container}>
                 <Text style={{ ...styles.header, fontFamily: 'AntonRegular'}}>Consulter vos stats Valorant</Text>
             </View>
