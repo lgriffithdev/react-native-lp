@@ -7,9 +7,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { useValorantStore } from '@src/store';
 
-import HomeScreen from '@src/pages/HomeScreen';
-import LoadingScreen from '@src/pages/LoadingScreen';
+import { HomeScreen, LoadingScreen } from '@src/pages';
 import { StatusBar } from 'expo-status-bar';
+import { Tabs } from '@src/components/navigation';
 
 const Stack = createNativeStackNavigator()
 
@@ -41,43 +41,15 @@ export default function App() {
   if (!isLoadingFontFinished || !data)
     return (
       <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Loading"
-          component={LoadingScreen}
-          options={{
-            headerShown: false
-          }}
-        />
-      </Stack.Navigator>
-      <StatusBar style="auto" />
-    </NavigationContainer>
+        <LoadingScreen />
+        <StatusBar style="auto" />
+      </NavigationContainer>
     )
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        {tabs.map((tab, index) => (
-          <Stack.Screen
-            name={tab.name}
-            component={tab.component}
-            options={{
-              headerShown: false
-            }}
-            key={index}
-          />
-        ))}
-      </Stack.Navigator>
-      <StatusBar style="auto" />
-    </NavigationContainer>
+      <NavigationContainer>
+        <StatusBar style="auto" />
+        <Tabs />
+      </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

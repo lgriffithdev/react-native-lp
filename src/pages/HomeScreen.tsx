@@ -5,6 +5,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useCallback, useEffect } from 'react';
 
 import BlankPage from '@src/pages/BlankPage'
+import { BottomTabBar } from '@react-navigation/bottom-tabs';
 
 
 const HomeScreen: React.FC = () => {    
