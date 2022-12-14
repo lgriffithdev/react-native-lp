@@ -1,13 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView } from 'react-native';
 import { useEffect, useState } from 'react';
-import getApiContent from '@src/api';
-import { Text } from 'react-native';
+import { useFonts } from 'expo-font'
+
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { useValorantStore } from '@src/store';
 
+import { HomeScreen, LoadingScreen } from '@src/pages';
+import { StatusBar } from 'expo-status-bar';
+import { Tabs } from '@src/components/navigation';
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    AntonRegular: require('@assets/fonts/Anton-Regular.ttf')
+  })
+
+  const [isLoadingFontFinished, setIsLoadingFontFinished] = useState(fontsLoaded)
+
+  useEffect(() => {
+    setIsLoadingFontFinished(fontsLoaded)
+  }, [fontsLoaded])
+
   const data = useValorantStore((state: any) => state.data)
   const fetch = useValorantStore((state: any) => state.fetch)
 
@@ -15,26 +31,25 @@ export default function App() {
     fetch()
   }, [])
 
+  const tabs = [
+    {
+      name: 'Home',
+      component: HomeScreen
+    }
+  ]
+
+  if (!isLoadingFontFinished || !data)
+    return (
+      <NavigationContainer>
+        <LoadingScreen />
+        <StatusBar style="auto" />
+      </NavigationContainer>
+    )
+
   return (
-    <SafeAreaView style={styles.container}>
-      {data &&
-        (
-          <Text>Data is loaded</Text>
-        )
-      }
-      {!data && (
-        <Text>Data is not loaded</Text>
-      )}
-      <StatusBar style="auto" />
-    </SafeAreaView>
+      <NavigationContainer>
+        <StatusBar style="auto" />
+        <Tabs />
+      </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
