@@ -1,14 +1,9 @@
 import { Text, View, StyleSheet } from 'react-native'
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen'
-
-import { useCallback, useEffect } from 'react';
 
 import BlankPage from '@src/pages/BlankPage'
-import { BottomTabBar } from '@react-navigation/bottom-tabs';
 
 
-const HomeScreen: React.FC = () => {    
+const HomeView: React.FC = () => {    
     return(
         <BlankPage backgroundImage={require('@assets/images/homepage/homepage_background.jpeg')}>
             <View style={styles.container}>
@@ -32,4 +27,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default HomeScreen
+export default HomeView;

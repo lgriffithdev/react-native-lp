@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { API_URL, API_TOKEN } from '@env'
+import { API_URL } from '@env'
 
-const getApiContent = () => {
-    return axios.get(`${API_URL}?api_key=${API_TOKEN}`)
+const getContent = async (endpoint: string) => {    
+    return await axios.get(`${API_URL}/${endpoint}`)
         .then((response) => response.data)
         .catch((err) => console.error(err.message))
 }
 
-export default getApiContent
+export default getContent

@@ -1,17 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useFonts } from 'expo-font'
 
-import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { useValorantStore } from '@src/store';
-
-import { HomeScreen, LoadingScreen } from '@src/pages';
+import { LoadingView } from '@src/pages';
 import { StatusBar } from 'expo-status-bar';
 import { Tabs } from '@src/components/navigation';
-
-const Stack = createNativeStackNavigator()
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -24,32 +18,14 @@ export default function App() {
     setIsLoadingFontFinished(fontsLoaded)
   }, [fontsLoaded])
 
-  const data = useValorantStore((state: any) => state.data)
-  const fetch = useValorantStore((state: any) => state.fetch)
-
-  useEffect(() => {
-    fetch()
-  }, [])
-
-  const tabs = [
-    {
-      name: 'Home',
-      component: HomeScreen
-    }
-  ]
-
-  if (!isLoadingFontFinished || !data)
-    return (
-      <NavigationContainer>
-        <LoadingScreen />
-        <StatusBar style="auto" />
-      </NavigationContainer>
-    )
-
   return (
       <NavigationContainer>
+        { !isLoadingFontFinished ? (
+          <LoadingView />
+        ) : (
+          <Tabs />
+        )}
         <StatusBar style="auto" />
-        <Tabs />
       </NavigationContainer>
   );
 }

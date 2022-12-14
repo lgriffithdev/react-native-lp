@@ -2,7 +2,7 @@ import { ActivityIndicator, View, StyleSheet } from 'react-native'
 
 import BlankPage from "@src/pages/BlankPage"
 
-const LoadingScreen: React.FC = () => {
+const LoadingView: React.FC = () => {
     return(
         <BlankPage backgroundImage={require('@assets/images/loading/loading_bg.jpg')}>
             <View style={styles.container}>
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default LoadingScreen
+export default LoadingView;

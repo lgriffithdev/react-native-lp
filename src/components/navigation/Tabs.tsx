@@ -1,13 +1,18 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { HomeScreen } from "@src/pages";
+import { HomeView } from "@src/pages";
+import { HeroStack } from "@src/stack";
 
 const Tab = createBottomTabNavigator()
 
 const Tabs: React.FC = () => {
     return (
-        <Tab.Navigator>
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Heroes" component={HeroScreen} />
+        <Tab.Navigator
+            screenOptions={() => ({
+                headerShown: false,
+            })}
+        >
+            <Tab.Screen name="Home" component={HomeView} />
+            <Tab.Screen name="Heroes" component={HeroStack} />
         </Tab.Navigator>
     )
 }

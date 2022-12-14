@@ -1,9 +1,11 @@
-import HomeScreen from "./HomeScreen";
-import LoadingScreen from "./LoadingScreen";
+import HomeView from "./HomeView";
+import LoadingView from "./LoadingView";
 import BlankPage from "./BlankPage";
+import HeroListView from "./HeroListView";
 
 export {
-    HomeScreen,
-    LoadingScreen,
-    BlankPage
+    HomeView,
+    LoadingView,
+    BlankPage,
+    HeroListView,
 };
